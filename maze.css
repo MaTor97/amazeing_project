@@ -10,7 +10,7 @@ h1 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     position: absolute;
     font-size: 38px;
-    color: rgb(255, 255, 255);
+    color: rgb(128, 68, 20);
 }
 #maze {
     border: 1px solid rgb(2, 255, 2);
@@ -20,7 +20,7 @@ h1 {
 }
 
 .brick {
-    background-color: rgba(238, 213, 74, 0.959);
+    background-color: rgba(255, 255, 255, 0.918);
 
 }
 .floor {
@@ -28,7 +28,7 @@ h1 {
 
 }
 .lava {
-    background-color:rgb(226, 86, 5);
+    background-color:rgb(128, 68, 20);
 }
 .player {
     background-color: rgb(247, 250, 244);

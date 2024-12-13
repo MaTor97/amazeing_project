@@ -10,11 +10,12 @@ const gravity = [1, 0];
 let playerX = 1;
 let playerY = 1;
 let counter = 0;
+let victories = 0;
 let applyGravité = true;
 let interval
 let place
 let lavaFloor
-let pointHeight = Math.floor(Math.random()*7);
+let pointHeight = Math.floor(Math.random()*10);
 
 function screamer(src) {
     let image = document.createElement('img');
@@ -87,7 +88,7 @@ function generateMaze() {
     place[pointHeight + 1][1] = brick
     place[pointHeight][1] = player // Placer le joueur
     place[pointHeight][width - 2] = target; // Placer la cible
-    lavaFloor = place.slice(-6);
+    lavaFloor = place.slice(-8);
     lavaFloor.forEach(line => {
     line.forEach((cell, index) => {
         if (cell === floor) {
@@ -104,7 +105,6 @@ function generateMaze() {
 }
 
 generateMaze()
-// Variables pour la position du joueur
 
 
 // Met à jour le DOM
@@ -125,8 +125,6 @@ function renderMaze() {
                 div.className = "target";
             } else if (cell === lava) {
                 div.className = 'lava';
-            } else if (cell === startPoint) {
-                div.className = 'startPoint'
             }
             main.appendChild(div);
         });
@@ -147,7 +145,7 @@ function movePlayer(dx, dy) {
 
     // Vérifier si le mouvement est valide (pas de mur)
     if(place[newX][newY] === lava) {
-        screamer('lava.jpg')
+        screamer('Luca.jpg')
     }
 
     if (place[newX][newY] !== brick) {
@@ -163,10 +161,27 @@ function movePlayer(dx, dy) {
         // Vérifier si le joueur atteint la cible
         if (playerX === pointHeight && playerY === width-2) {
             counter++
-            alert("Félicitations ! Vous avez atteint la cible !"+` Score: ${counter}`);
-            if(counter === 1)
-                screamer('Anne.jpg')
-            generateMaze()
+            victories++
+            alert("Félicitations ! Vous avez atteint la cible !"+` Score: ${victories}`);
+            switch(counter) {
+                case 1:
+                    screamer('Anne.jpg')
+                    generateMaze()
+                    break;
+                case 2:
+                    screamer('LeZ.jpg')
+                    generateMaze()
+                    break;
+                case 3:
+                    screamer('lava.jpg')
+                    generateMaze()
+                    break;
+                default:
+                    counter = 0
+                    screamer('LeZ2.jpg')
+                    generateMaze()
+                    break;
+            }
         }
     }
 }
